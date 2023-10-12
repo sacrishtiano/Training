@@ -11,6 +11,10 @@ class TableViewCell: UITableViewCell {
     
     @IBOutlet weak var label : UILabel!
     @IBOutlet weak var myImage : UIImageView!
+    @IBOutlet weak var details : UITextView!
+//        didSet {
+//            details?.isHidden = true
+//        }
     
     override func awakeFromNib() {
         super.awakeFromNib()

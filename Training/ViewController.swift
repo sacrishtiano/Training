@@ -23,6 +23,8 @@ class ViewController: UIViewController {
     var images = [UIImage(named: "Bear"),UIImage(named: "Deer"),UIImage(named: "Dog"),UIImage(named: "Elephant"),UIImage(named: "Jackle"),UIImage(named: "Kangaroo"),UIImage(named: "Lamb"),UIImage(named: "Lion"),UIImage(named: "Monkey"),UIImage(named: "Panda"),UIImage(named: "Peacock"),UIImage(named: "PolarBear"),UIImage(named: "Rabbit"),UIImage(named: "Tiger"),UIImage(named: "Zebra")]
         
     var details = ["Type: Wild , Found in = Forest","Type: Wild , Found in = Forest","Type: Domestic , Found in = Everywhere","Type: Wild , Found in = Forest","Type: Wild , Found in = Forest","Type: Exotic , Found in = Australia","Type: Domestic , Found in = Everywhere","Type: Wild , Found in = Forest","Type: Wild , Found in = Forest","Type: Exotic , Found in = China/Asia","Type: Wild , Found in = Forest","Type: Exotic , Found in = Cold temperature regions","Type: Wild , Found in = Forest","Type: Wild , Found in = Forest","Type: Wild , Place = Forest"]
+    
+//    var tCount : Int = 1
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +50,9 @@ extension ViewController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(animals[indexPath.row])
+//        tCount += 1
+//        print(tCount, tCount%2)
+        
     }
         
 }
@@ -62,6 +67,15 @@ extension ViewController : UITableViewDataSource {
         let cell  = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! TableViewCell
         cell.label.text = animals[indexPath.row]
         cell.myImage.image = images[indexPath.row]
+        cell.details.text = details[indexPath.row]
+//        if tCount % 2 == 0 {
+//            cell.details.isHidden = false
+//
+//        }
+//
+//        else {
+//            cell.details.isHidden = true
+//        }
         return cell
 
     }
