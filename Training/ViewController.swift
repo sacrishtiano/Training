@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet var tableView : UITableView!
+    @IBOutlet var tableView: UITableView!
     
 //    let animals = ["Bear","Dear","Dog","Elephant","Jackle","Kangaroo","Lamb","Lion","Monkey","Panda","Peacock","Polar Bear","Rabbit","Tiger","Zebra"]
 //
@@ -46,10 +46,13 @@ class ViewController: UIViewController {
 
 }
 
-extension ViewController : UITableViewDelegate {
+extension ViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(animals[indexPath.row])
+        UIView.animate(withDuration: 0.3) {
+            self.tableView.performBatchUpdates(nil)
+        }
 //        tCount += 1
 //        print(tCount, tCount%2)
         
@@ -57,7 +60,7 @@ extension ViewController : UITableViewDelegate {
         
 }
 
-extension ViewController : UITableViewDataSource {
+extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return animals.count
@@ -105,5 +108,11 @@ extension ViewController : UITableViewDataSource {
 //        let config = UISwipeActionsConfiguration(actions: [deleteSwipe])
 //        return config
 //    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if let cell = self.tableView.cellForRow(at: indexPath) as? TableViewCell {
+            cell.hideDetails()
+        }
+    }
 
 }

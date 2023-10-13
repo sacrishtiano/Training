@@ -9,12 +9,15 @@ import UIKit
 
 class TableViewCell: UITableViewCell {
     
-    @IBOutlet weak var label : UILabel!
-    @IBOutlet weak var myImage : UIImageView!
-    @IBOutlet weak var details : UITextView!
-//        didSet {
-//            details?.isHidden = true
-//        }
+    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var myImage: UIImageView!
+    @IBOutlet weak var details: UITextView! {
+        didSet {
+            selectionStyle = .none
+            details.isHidden = true
+        }
+        
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,8 +26,25 @@ class TableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        if isDetailHidden, selected {
+            showDetails()
+        }
+        else {
+            hideDetails()
+        }
+    }
+}
 
-        // Configure the view for the selected state
+extension TableViewCell {
+    var isDetailHidden: Bool {
+        return details.isHidden
     }
     
+    func showDetails() {
+        details.isHidden = false
+    }
+    
+    func hideDetails() {
+        details.isHidden = true
+    }
 }
